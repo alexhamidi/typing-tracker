@@ -1,0 +1,15 @@
+[project]
+name = "vit-test"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "accelerate>=1.10.1",
+    "mediapipe>=0.10.21",
+    "opencv-python>=4.11.0.86",
+    "pandas>=2.3.3",
+    "pillow>=11.3.0",
+    "torch>=2.8.0",
+    "transformers>=4.56.2",
+]
