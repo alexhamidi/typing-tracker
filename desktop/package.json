@@ -1,0 +1,12 @@
+{
+  "name": "typing-tracker-desktop",
+  "version": "1.0.0",
+  "description": "Desktop keystroke listener",
+  "main": "index.js",
+  "scripts": {
+    "dev": "bun index.js"
+  },
+  "dependencies": {
+    "node-global-key-listener": "^0.1.1"
+  }
+}

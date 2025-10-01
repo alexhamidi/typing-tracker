@@ -1,0 +1,43 @@
+# Node.js / Bun
+desktop/node_modules/
+desktop/bun.lock
+
+# iOS / Xcode
+mobile/*.xcodeproj/xcuserdata/
+mobile/*.xcodeproj/project.xcworkspace/xcuserdata/
+mobile/*.xcworkspace/xcuserdata/
+mobile/DerivedData/
+mobile/build/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+*.xccheckout
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.temp
