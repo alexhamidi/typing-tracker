@@ -1,17 +1,37 @@
 const { GlobalKeyboardListener } = require('node-global-key-listener');
-
+const fs = require('fs');
+const { Blob } = require('buffer');
 const keyboardListener = new GlobalKeyboardListener();
 
 console.log('Keystroke listener started. Press any key...');
 console.log('Press Ctrl+C to exit\n');
 
 // Listen for all keyboard events
-keyboardListener.addListener((e, down) => {
+keyboardListener.addListener(async (e, down) => {
   console.log('Key event:', {
     name: e.name,
     state: down ? 'DOWN' : 'UP',
     rawKey: e.rawKey
   });
+
+  const file_path = "/Users/alexh/typing-tracker/desktop/test.jpg"
+  const url = "http://localhost:8000/infer/" + e.name
+
+  const fileBuffer = fs.readFileSync(file_path);
+  const blob = new Blob([fileBuffer], { type: 'image/jpeg' });
+  const file = new File([blob], 'test.jpg', { type: 'image/jpeg' });
+
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(url, {
+    method: "POST",
+    body: formData
+  })
+
+  const data = await response.json()
+  console.log(data)
+
 });
 
 // Handle graceful shutdown
