@@ -5,6 +5,8 @@ const { exec } = require('child_process');
 const robot = require('robotjs');
 const keyboardListener = new GlobalKeyboardListener();
 
+let ignoreNextBackspace = false;
+
 console.log('Keystroke listener started. Press any key...');
 console.log('Press Ctrl+C to exit\n');
 
@@ -27,6 +29,12 @@ const get_name = (finger) => {
 keyboardListener.addListener(async (e, down) => {
   // Only process key down events (down is an object with state)
   if (!down[e.name])return;
+
+  // Ignore robot-triggered backspaces
+  if (e.name === 'BACKSPACE' && ignoreNextBackspace) {
+    ignoreNextBackspace = false;
+    return;
+  }
 
   const optimal_mapping = {
     "LEFT CTRL": "lp",
@@ -132,6 +140,7 @@ keyboardListener.addListener(async (e, down) => {
       console.log(`   YOU USED YOUR  ${get_name(detected)} to click the ${e.name} key, use your ${get_name(optimal)} instead`);
 
       // Send backspace to undo the wrong keystroke immediately
+      ignoreNextBackspace = true;
       robot.keyTap('backspace');
 
       // Play error sound (macOS system beep)
