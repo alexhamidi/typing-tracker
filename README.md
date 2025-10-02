@@ -74,26 +74,16 @@ The inference model uses MediaPipe to detect hand landmarks and determine which 
    cd inference_model
    ```
 
-2. Create a virtual environment and install dependencies:
+2. Install dependencies using uv:
    ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   ```
-
-3. Install dependencies using uv (recommended) or pip:
-   ```bash
-   # Using uv
-   uv pip install -e .
-
-   # Or using pip
-   pip install -r pyproject.toml
+   uv sync
    ```
 
 #### Running the Server
 
 Start the FastAPI server:
 ```bash
-uvicorn main:app --host 0.0.0.0 --port 8000
+uv run python main.py
 ```
 
 The server will be available at `http://localhost:8000`
@@ -160,13 +150,12 @@ Once calibration is complete, you can start using the typing tracker:
 
 1. **Start the inference model** (in `inference_model/`):
    ```bash
-   source .venv/bin/activate
-   uvicorn main:app --host 0.0.0.0 --port 8000
+   uv run python main.py
    ```
 
 2. **Start the mobile app**:
    - Launch the app on your iPhone
-   - Position it to view your keyboard and hands
+   - Position it **above your keyboard** looking down to view your keyboard and hands
    - Ensure it shows the camera preview
 
 3. **Start the desktop listener** (in `desktop/`):
